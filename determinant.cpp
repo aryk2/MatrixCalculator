@@ -1,5 +1,5 @@
 //functions for determinant calculator
-#include "determinant.h"
+#include "matrix.h"
 
 
 //this is the only function required to calculate the 

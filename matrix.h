@@ -3,12 +3,11 @@
 using namespace std;
 
 //function prototypes for matrix_suite.cpp file
-
-//struct for two matrix functions
+//struct for two matrix functions forward declaration
 struct matrices;
 void two_matrix(int choice);
 void user_input_twomatrix(matrices & mtrs);
-void test_display_twomatrix(matrices & mtrs);
+void test_display_twomatrix(matrices & mtrs, int choice);
 void free_mem_twomatrix(matrices & mtrs);
 
 void single_matrix(int choice);
@@ -16,7 +15,22 @@ float ** user_input_matrix(int & rows, int & columns);
 void test_display(float ** matrix, int rows, int columns);
 void free_mem(float ** matrix, int rows, int columns);
 
+//function for addition and subtraction
+int add(matrices & mtrs, int coef);
 
+//functions for multiplication of 2 matrices
+int matrix_multiply(matrices & mtrs);
+bool is_possible(matrices & mtrs);
+int dot_product(matrices & mtrs, int row, int column);
+void scalar_mult(float ** &  matrix, float scalar, int rows, int columns);
+
+//functions for calculating determinant
+float determinant(float ** matrix, int size);
+void test_disp(float ** matrix, int size);
+
+//functions for calculating inverted matrix
+void invert(float ** & matrix, int size);
+ 
 //this is an outside function that creates the class and starts
 //the converter which makes the process more useful because 
 //the converter becomes a function that can be called instead 

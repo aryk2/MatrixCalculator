@@ -20,11 +20,11 @@ int main() {
         cin >> choice;
         if(choice == 0)
             stop = true;
-		else if(choice < 0) 
-		   cout << "\nplease make valid choice\n";
+	else if(choice < 0) 
+	    cout << "\nplease make valid choice\n";
         else if (choice > 7)    	 
-		   cout << "\nplease make valid choice\n";
-		else if(choice <= 3)
+	    cout << "\nplease make valid choice\n";
+	else if(choice <= 3)
             two_matrix(choice);
         else
             single_matrix(choice);
@@ -36,12 +36,25 @@ int main() {
 //**********functions that deal with 2 matrices ***************
 
 void two_matrix(int choice) {
-    matrices
+    matrices mtrs;
+    user_input_twomatrix(mtrs);
+    int returned = 0;
+    if(choice == 1)
+        returned = add(mtrs, 1);
+    if(choice == 2)
+        returned = add(mtrs, -1);
+    if(choice == 3) 
+        returned = matrix_multiply(mtrs);
+    if(returned)
+        test_display_twomatrix(mtrs, choice);
+    else 
+        cout << "\noperation could not be completed due to dimensions\n";
+    free_mem_twomatrix(mtrs);
 }
 
 //function that allows user to enter 2 matrices of any size
 void user_input_twomatrix(matrices & mtrs) {
-    cout << "\nenter first matrix";
+    cout << "\nenter first matrix"
          << "\nplease enter how many rows: ";
     cin >> mtrs.rows1;
     cout << "\nplease enter how many columns: ";
@@ -105,13 +118,18 @@ void user_input_twomatrix(matrices & mtrs) {
 
 
 //displays the matrices in the matrices struct
-void test_display_twomatrix(matrices & mtrs) {
+void test_display_twomatrix(matrices & mtrs, int choice) {
     for(int i = 0; i < mtrs.rows1; ++i) {
 	for(int k = 0; k < mtrs.columns1; ++k) 
 	    cout << "[" << mtrs.matrix1[i][k] << "]";
 	cout << endl;
     }
-    cout << "\n times \n\n";
+    if(choice == 1)
+        cout << "\n Plus \n";
+    if(choice == 2)
+        cout << "\n Minus \n";
+    if(choice == 3)
+        cout << "\n Times \n";
     for(int i = 0; i < mtrs.rows2; ++i) {
 	for(int k = 0; k < mtrs.columns2; ++k) 
 	    cout << "[" << mtrs.matrix2[i][k] << "]";

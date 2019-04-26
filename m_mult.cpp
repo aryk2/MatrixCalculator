@@ -1,5 +1,5 @@
 //Matrix Multiplcation functions
-#include "m_mult.h"
+#include "matrix.h"
 
 //this function checks if the dimensions make 
 //multiplcation possible, then makes a result
@@ -40,3 +40,10 @@ int dot_product(matrices & mtrs, int row, int column) {
     return result;
 }
  
+void scalar_mult(float ** &  matrix, float scalar, int rows, int columns) {
+    for(int i = 0; i < rows; ++i) {
+        for(int k = 0; k < rows; ++k) {
+            matrix[i][k] = matrix[i][k] * scalar;
+        }
+    }
+}

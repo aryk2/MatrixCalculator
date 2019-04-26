@@ -1,5 +1,5 @@
 //functions for rref converter
-#include "rref.h"
+#include "matrix.h"
 
 //this function can be called to start the ref conversion process.
 //it requires a int ** matrix and the row, columns of that matrix.
