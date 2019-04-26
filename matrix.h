@@ -2,6 +2,21 @@
 #include <iostream>
 using namespace std;
 
+//function prototypes for matrix_suite.cpp file
+
+//struct for two matrix functions
+struct matrices;
+void two_matrix(int choice);
+void user_input_twomatrix(matrices & mtrs);
+void test_display_twomatrix(matrices & mtrs);
+void free_mem_twomatrix(matrices & mtrs);
+
+void single_matrix(int choice);
+float ** user_input_matrix(int & rows, int & columns);
+void test_display(float ** matrix, int rows, int columns);
+void free_mem(float ** matrix, int rows, int columns);
+
+
 //this is an outside function that creates the class and starts
 //the converter which makes the process more useful because 
 //the converter becomes a function that can be called instead 
@@ -37,3 +52,13 @@ class converter {
     int ROWS;
 };
 
+//struct for two matrix functions
+struct matrices {
+    int rows1;
+    int rows2;
+    int columns1;
+    int columns2;
+    float ** matrix1;
+    float ** matrix2;
+    float ** result;
+};
