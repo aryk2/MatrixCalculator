@@ -4,7 +4,7 @@
 int main() {
     bool stop = false;
     while(!stop) {
-        cout << "\nwelcome to the matrix calculator suite\n"
+        cout << "\nmatrix calculator\n"
              << "please select an operation: \n"
              << "\n  two matrix operations: \n"
              << "1 - addition\n"
@@ -15,6 +15,8 @@ int main() {
              << "5 - convert to reduced row echelon form\n"
              << "6 - find determinant\n"
              << "7 - find inverse\n"
+             << "8 - multiply by a scalar\n"
+             << "\n 0 to exit\n"
              << "\n your selection: ";
         int choice; 
         cin >> choice;
@@ -22,7 +24,7 @@ int main() {
             stop = true;
 	else if(choice < 0) 
 	    cout << "\nplease make valid choice\n";
-        else if (choice > 7)    	 
+        else if (choice > 8)    	 
 	    cout << "\nplease make valid choice\n";
 	else if(choice <= 3)
             two_matrix(choice);
@@ -175,7 +177,25 @@ void free_mem_twomatrix(matrices & mtrs) {
 //*************functions that deal with 1 matrix******************
 
 void single_matrix(int choice) {
-
+    int rows, columns;
+    float ** matrix = user_input_matrix(rows, columns);
+    if(choice == 4) {
+    //work on this one
+    }
+    if(choice == 5)
+        matrix = rref_converter(matrix, rows, columns);
+    if(choice == 6)
+        float det = determinant(matrix, rows);
+    if(choice == 7)
+        invert(matrix, rows);
+    if(choice == 8) {
+        cout << "\nMultiply by what scalar? ";
+        int scalar;
+        cin >> scalar;
+        scalar_mult(matrix, scalar, rows, columns); 
+    }
+    test_display(matrix, rows, columns);
+    free_mem(matrix, rows, columns);
 }
 
 //function that allows user to enter a matrix of any dimension
