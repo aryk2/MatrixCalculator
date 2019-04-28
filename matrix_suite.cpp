@@ -179,11 +179,10 @@ void free_mem_twomatrix(matrices & mtrs) {
 void single_matrix(int choice) {
     int rows, columns;
     float ** matrix = user_input_matrix(rows, columns);
-    if(choice == 4) {
-    //work on this one
-    }
+    if(choice == 4) 
+        matrix = rref_converter(matrix, rows, columns, 1);
     if(choice == 5)
-        matrix = rref_converter(matrix, rows, columns);
+        matrix = rref_converter(matrix, rows, columns, 0);
     if(choice == 6)
         float det = determinant(matrix, rows);
     if(choice == 7)

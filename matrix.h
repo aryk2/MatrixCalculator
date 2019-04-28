@@ -35,7 +35,7 @@ void invert(float ** & matrix, int size);
 //the converter which makes the process more useful because 
 //the converter becomes a function that can be called instead 
 //of calling itsself in main. 
-float ** rref_converter(float **new_matrix, int rows, int columns);
+float ** rref_converter(float **new_matrix, int rows, int columns, int ref);
 
 //class interface
 //this is the class that manages the converter, it has data members 
@@ -56,10 +56,10 @@ class converter {
     void dimensions(int rows, int columns);
     int make_matrix();
     int is_ref();
-    int convert();
+    int convert(int ref);
     bool check_pivot(int row, int column);
     void reorder();
-    void row_reduce(int i);
+    void row_reduce(int i, int ref);
   private:
     float ** matrix;
     int COLUMNS;

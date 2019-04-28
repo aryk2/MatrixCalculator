@@ -4,11 +4,11 @@
 //this function can be called to start the ref conversion process.
 //it requires a int ** matrix and the row, columns of that matrix.
 //it returns a reduced matrix 
-float ** rref_converter(float **new_matrix, int rows, int columns) {
+float ** rref_converter(float **new_matrix, int rows, int columns, int ref) {
     converter c;
     c.set_matrix(new_matrix);
     c.dimensions(rows, columns);
-    int status = c.convert();
+    int status = c.convert(ref);
     if(status == 1) {
 	return c.get_matrix();
     }
@@ -106,17 +106,17 @@ bool converter::check_pivot(int row, int column) {
 
 //This function will go through the matrix and reduce by calling
 //helper functions, this function manages the reducing
-int converter::convert() {
+int converter::convert(int ref) {
     int *pivots = new int[ROWS]; //record of pivot column indices
     for(int i = 0; i < ROWS; ++i) 
 	pivots[i] = 0;
-    bool ref = is_ref();
-    if(ref == 7) return ref; //error for matrix being NULL 
-    if(ref) return 1; //nothing else needed to convert
+    bool rref = is_ref();
+    if(rref == 7) return ref; //error for matrix being NULL 
+    if(rref) return 1; //nothing else needed to convert
     reorder();
     
     for(int i = 0; i < ROWS; ++i) 
-	row_reduce(i);
+	row_reduce(i, ref);
     return 1;
 }
 
@@ -170,7 +170,7 @@ void converter::reorder() {
 //moves down the rows below and 0's out the pivot column
 //it then starts at the top and does the same thing so all 
 //other entries in the row with the leading coef of this row are 0
-void converter::row_reduce(int row) {
+void converter::row_reduce(int row, int ref) {
     int pivot;
     for(int i = 0; i < COLUMNS; ++i) {
         if(matrix[row][i] != 0) {
@@ -193,15 +193,17 @@ void converter::row_reduce(int row) {
 		matrix[i][k] = 0;
         }
     }
-    if(row != 0) {
-	for(int i = 0; i < row; ++i) {
-	    float scalar = matrix[i][pivot]; 
-            for(int k = 0; k < COLUMNS; ++k) {
-		matrix[i][k] = matrix[i][k] - (scalar * matrix[row][k]);
-                if(matrix[i][k] == -0)
-		    matrix[i][k] = 0;
+    if(ref) {
+        if(row != 0) {
+       	    for(int i = 0; i < row; ++i) {
+	        float scalar = matrix[i][pivot]; 
+                for(int k = 0; k < COLUMNS; ++k) {
+		    matrix[i][k] = matrix[i][k] - (scalar * matrix[row][k]);
+                    if(matrix[i][k] == -0)
+		        matrix[i][k] = 0;
+                }
             }
-	}
+        }
     }
 }
 
