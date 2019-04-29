@@ -31,6 +31,8 @@ float determinant(float ** matrix, int size) {
             else
                 sign = -1;
             det += sign * matrix[0][i] * determinant(sub_matrix, size-1);
+           
+
         } 
     }
     return det;

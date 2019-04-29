@@ -30,7 +30,10 @@ void test_disp(float ** matrix, int size);
 
 //functions for calculating inverted matrix
 void invert(float ** & matrix, int size);
- 
+float matrix_minor(float ** matrix, int size, int row, int column);
+void cofactor_matrix(float ** & matrix, int size);
+void transpose(float ** matrix, float ** & adjugate, int size);
+
 //this is an outside function that creates the class and starts
 //the converter which makes the process more useful because 
 //the converter becomes a function that can be called instead 
