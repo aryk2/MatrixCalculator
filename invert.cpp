@@ -11,6 +11,7 @@ void invert(float ** & matrix, int size) {
     float * det_array = new float[size * size];
  
     int det_count = 0;
+    test_disp(matrix, size);
     for(int i = 0; i < size; ++i) {
         for(int k = 0; k < size; ++k) {
             int row = 0; 
@@ -29,9 +30,11 @@ void invert(float ** & matrix, int size) {
                         ++row;
                     }
                 }
-                det_array[det_count] = determinant(sub_matrix, size-1); 
-                ++det_count;
             }
+            cout << "submatrix: " << i << ", " << k << endl;
+            test_disp(sub_matrix, size-1);
+            det_array[det_count] = determinant(sub_matrix, size-1); 
+            ++det_count;
         }
     }
 
@@ -42,6 +45,8 @@ void invert(float ** & matrix, int size) {
             ++index;
         }
     }
+   cout << "determinants\n";
+    test_disp(matrix, size);
     
     float ** adjugate = new float * [size];
     for(int i = 0; i < size; ++i) 
