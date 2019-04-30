@@ -149,26 +149,26 @@ void test_display_twomatrix(matrices & mtrs, int choice) {
 void free_mem_twomatrix(matrices & mtrs) {
     if(mtrs.matrix1) {
 	for(int i = 0; i < mtrs.rows1; ++i) {
-	    delete mtrs.matrix1[i];
+	    delete [] mtrs.matrix1[i];
    	    mtrs.matrix1[i] = NULL;
 	}
-	delete mtrs.matrix1;
+	delete [] mtrs.matrix1;
 	mtrs.matrix1 = NULL;
     }
     if(mtrs.matrix2) {
 	for(int i = 0; i < mtrs.rows2; ++i) {
-	    delete mtrs.matrix2[i];
+	    delete [] mtrs.matrix2[i];
    	    mtrs.matrix2[i] = NULL;
 	}
-	delete mtrs.matrix2;
+	delete [] mtrs.matrix2;
 	mtrs.matrix2 = NULL;
     }
     if(mtrs.result) {
 	for(int i = 0; i < mtrs.rows1; ++i) {
-	    delete mtrs.result[i];
+	    delete [] mtrs.result[i];
    	    mtrs.result[i] = NULL;
 	}
-	delete mtrs.result;
+	delete [] mtrs.result;
 	mtrs.result = NULL;
     }
 }
@@ -247,10 +247,10 @@ void test_display(float ** matrix, int rows, int columns) {
 void free_mem(float ** matrix, int rows, int columns) {
     if(matrix) {
 	for(int i = 0; i < rows; ++i) {
-	    delete matrix[i];
+	    delete [] matrix[i];
    	    matrix[i] = NULL;
 	}
-	delete matrix;
+	delete [] matrix;
 	matrix = NULL;
     }
 }  

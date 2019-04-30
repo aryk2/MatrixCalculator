@@ -21,7 +21,7 @@ void invert(float ** & matrix, int size) {
             ++index;
         }
     }
-    delete det_array;
+    delete [] det_array;
     
     float ** adjugate = new float * [size];
     for(int i = 0; i < size; ++i) 

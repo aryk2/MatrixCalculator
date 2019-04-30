@@ -159,7 +159,7 @@ void converter::reorder() {
         }
         float ** temp = matrix;
         matrix = reorderedmatrix;
-        delete pivots;
+        delete [] pivots;
         free_mem(temp, ROWS, COLUMNS);
     }
 }
