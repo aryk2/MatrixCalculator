@@ -34,6 +34,7 @@ float determinant(float ** matrix, int size) {
            
 
         } 
+        free_mem(sub_matrix, size-1, size-1);
     }
     return det;
 }

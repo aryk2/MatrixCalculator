@@ -60,7 +60,6 @@ float matrix_minor(float ** matrix, int size, int row, int column) {
                 ++subrow;
             }
         }
-        cout << endl;
     }
     return determinant(sub_matrix, new_size);
 }

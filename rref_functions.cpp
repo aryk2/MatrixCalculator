@@ -107,9 +107,6 @@ bool converter::check_pivot(int row, int column) {
 //This function will go through the matrix and reduce by calling
 //helper functions, this function manages the reducing
 int converter::convert(int ref) {
-    int *pivots = new int[ROWS]; //record of pivot column indices
-    for(int i = 0; i < ROWS; ++i) 
-	pivots[i] = 0;
     bool rref = is_ref();
     if(rref == 7) return ref; //error for matrix being NULL 
     if(rref) return 1; //nothing else needed to convert
@@ -160,7 +157,10 @@ void converter::reorder() {
 	    }  
 	    --index;
         }
+        float ** temp = matrix;
         matrix = reorderedmatrix;
+        delete pivots;
+        free_mem(temp, ROWS, COLUMNS);
     }
 }
 
